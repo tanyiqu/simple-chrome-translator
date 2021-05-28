@@ -1,0 +1,22 @@
+{
+  "name": "Simple Chrome Translator",
+  "description": "简单翻译\nhttps://github.com/tanyiqu/simple-chrome-translator",
+  "version": "1.0",
+  "manifest_version": 2,
+  "browser_action": {
+    "default_icon": "extension.png"
+  },
+  "icons": {
+    "16": "extension.png",
+    "48": "extension.png",
+    "128": "extension.png"
+  },
+  "background": {
+    "scripts": [
+      "js/background.js"
+    ]
+  },
+  "permissions": [
+    "contextMenus"
+  ]
+}
