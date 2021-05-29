@@ -1,6 +1,21 @@
 console.log('Simple Chrome Translator：扩展执行');
 
 
+
+function getCurrentTabId() {
+    chrome.tabs.query({
+        active: true,
+        currentWindow: true
+    }, function (tabs) {
+        chrome.tabs.executeScript(tabs[0].id, {
+            // file: 'js/axios.min.js'
+            file: 'js/util.js'
+        });
+    });
+}
+
+
+
 // 添加使用默认搜索引擎搜索
 chrome.contextMenus.create({
     title: '翻译: 【%s】', // %s表示选中的文字
@@ -13,7 +28,6 @@ chrome.contextMenus.create({
 
 // 添加图标的点击事件
 chrome.browserAction.onClicked.addListener(function (tab) {
-    alert(`作者：tanyiqu
-项目地址：https://github.com/tanyiqu/simple-chrome-translator
-版本：1.0`);
+    // alert('作者：tanyiqu\n项目地址：https://github.com/tanyiqu/simple-chrome-translator');
+    getCurrentTabId();
 });
