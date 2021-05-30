@@ -2,16 +2,28 @@ console.log('Simple Chrome Translator：扩展执行');
 
 
 
-function getCurrentTabId() {
-    chrome.tabs.query({
-        active: true,
-        currentWindow: true
-    }, function (tabs) {
-        chrome.tabs.executeScript(tabs[0].id, {
-            // file: 'js/axios.min.js'
-            file: 'js/util.js'
-        });
-    });
+
+
+
+
+
+
+// function loadExternalJs(success) {
+//     chrome.tabs.query({
+//         active: true,
+//         currentWindow: true
+//     }, function (tabs) {
+//         chrome.tabs.executeScript(tabs[0].id, {
+//             file: 'js/axios.min.js'
+//         });
+//         success();
+//     });
+// }
+
+
+
+function http(url, params) {
+    return "";
 }
 
 
@@ -28,6 +40,17 @@ chrome.contextMenus.create({
 
 // 添加图标的点击事件
 chrome.browserAction.onClicked.addListener(function (tab) {
-    // alert('作者：tanyiqu\n项目地址：https://github.com/tanyiqu/simple-chrome-translator');
-    getCurrentTabId();
+    alert('作者：tanyiqu\n项目地址：https://github.com/tanyiqu/simple-chrome-translator');
+    
+    // loadExternalJs(() => {
+    //     axios.get('/user?ID=12345')
+    //         .then(function (response) {
+    //             console.log(response);
+    //         })
+    //         .catch(function (error) {
+    //             console.log(error);
+    //         });
+    // });
+
+
 });
