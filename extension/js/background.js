@@ -26,8 +26,8 @@ function http(url, params) {
     return "";
 }
 
-var Ajax = {
-    get: function (url, fn) {
+const http = {
+    get: (url, success) => {
         // XMLHttpRequest对象用于在后台与服务器交换数据   
         var xhr = new XMLHttpRequest();
         xhr.open('GET', url, true);
@@ -35,24 +35,11 @@ var Ajax = {
             // readyState == 4说明请求已完成
             if (xhr.readyState == 4 && xhr.status == 200 || xhr.status == 304) {
                 // 从服务器获得数据 
-                fn.call(this, xhr.responseText);
+                success(xhr.responseText);
             }
         };
         xhr.send();
     },
-    // datat应为'a=a1&b=b1'这种字符串格式，在jq里如果data为对象会自动将对象转成这种字符串格式
-    post: function (url, data, fn) {
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", url, true);
-        // 添加http头，发送信息至服务器时内容编码类型
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 304)) {
-                fn.call(this, xhr.responseText);
-            }
-        };
-        xhr.send(data);
-    }
 }
 
 
@@ -71,11 +58,10 @@ chrome.browserAction.onClicked.addListener(function (tab) {
     // alert('作者：tanyiqu\n项目地址：https://github.com/tanyiqu/simple-chrome-translator');
 
     console.log('send');
-    
-    Ajax.get('http://fanyi.youdao.com/translate?&doctype=json&type=AUTO&i=apple', (a, b) => {
+
+    http.get('http://fanyi.youdao.com/translate?&doctype=json&type=AUTO&i=apple', (res) => {
         console.log('success');
-        console.log(a);
-        console.log(b);
+        console.log(res);
     });
     // loadExternalJs(() => {
     //     axios.get('/user?ID=12345')
