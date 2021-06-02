@@ -26,7 +26,7 @@ function http(url, params) {
     return "";
 }
 
-const http = {
+const MyHttp = {
     get: (url, success) => {
         // XMLHttpRequest对象用于在后台与服务器交换数据   
         var xhr = new XMLHttpRequest();
@@ -59,9 +59,15 @@ chrome.browserAction.onClicked.addListener(function (tab) {
 
     console.log('send');
 
-    http.get('http://fanyi.youdao.com/translate?&doctype=json&type=AUTO&i=apple', (res) => {
+    MyHttp.get('http://fanyi.youdao.com/translate?&doctype=json&type=AUTO&i=banana', (res) => {
         console.log('success');
         console.log(res);
+        let obj = JSON.parse(res)
+        console.log(obj);
+        console.log(obj.translateResult);
+        console.log(obj.translateResult[0]);
+        console.log(obj.translateResult[0][0]);
+        alert(obj.translateResult[0][0]['tgt'])
     });
     // loadExternalJs(() => {
     //     axios.get('/user?ID=12345')
