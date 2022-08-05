@@ -1,26 +1,35 @@
 {
+  "manifest_version": 3,
   "name": "Simple Chrome Translator",
-  "description": "简单翻译\nhttps://github.com/tanyiqu/simple-chrome-translator",
   "version": "1.0",
-  "manifest_version": 2,
-  "browser_action": {
-    "default_icon": "extension.png"
+  "default_locale": "zh_CN",
+
+  "description": "简单翻译\nhttps://github.com/tanyiqu/simple-chrome-translator",
+
+
+  "background": {
+    "service_worker": "js/background.js"
   },
+
+  
   "icons": {
     "16": "extension.png",
     "48": "extension.png",
     "128": "extension.png"
   },
-  "background": {
-    "scripts": [
-      "js/background.js"
-    ]
+
+  "action": {
+    "default_popup": "pages/popup.html",
+    "default_icon": "extension.png"
   },
+
   "permissions": [
     "contextMenus",
+    "declarativeNetRequest",
     "tabs",
-    "http://*/*", 
-    "https://*/*",
-    "file://*/*"
-  ]
+    "notifications"
+  ],
+
+  "host_permissions": ["http://*/*", "https://*/*"]
+
 }
